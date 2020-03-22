@@ -12,3 +12,12 @@ Future<Map<String, dynamic>> allCovidInfo(http.Client httpClient) async {
   }
 }
 
+Future<Map<String, dynamic>> countryCovidInfo(String country,http.Client httpClient) async {
+  final httpResponse = await httpClient.get('https://corona.lmao.ninja/countries/$country');
+  if (httpResponse.statusCode == 200) {
+    final jsonBody = json.decode(httpResponse.body);
+    return jsonBody;
+  } else {
+    throw Exception();
+  }
+}
