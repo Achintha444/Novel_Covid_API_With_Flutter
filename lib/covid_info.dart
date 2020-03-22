@@ -2,7 +2,8 @@ import 'dart:convert';
 
 import 'package:http/http.dart' as http;
 
-Future<Map<String, dynamic>> allCovidInfo(http.Client httpClient) async {
+/// This method will return the total statistics
+Future<Map<String, dynamic>> allCovidInfo(http.Client httpClient) async { 
   final httpResponse = await httpClient.get('https://corona.lmao.ninja/all');
   if (httpResponse.statusCode == 200) {
     final jsonBody = json.decode(httpResponse.body);
@@ -12,6 +13,8 @@ Future<Map<String, dynamic>> allCovidInfo(http.Client httpClient) async {
   }
 }
 
+
+/// This method will return the statistics based on the country
 Future<Map<String, dynamic>> countryCovidInfo(String country,http.Client httpClient) async {
   final httpResponse = await httpClient.get('https://corona.lmao.ninja/countries/$country');
   if (httpResponse.statusCode == 200) {
