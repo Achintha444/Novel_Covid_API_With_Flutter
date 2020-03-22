@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:novel_covid_api/UI.dart';
+import 'package:novel_covid_api/pages/UI.dart';
 
 void main() => runApp(MyApp());
 
