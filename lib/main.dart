@@ -1,19 +1,11 @@
-import 'package:flutter/material.dart';
-import 'package:novel_covid_api/pages/UI.dart';
+import 'package:novel_covid_api/covid_info.dart';
+import 'package:http/http.dart' as http;
 
-void main() => runApp(MyApp());
+void main() async {
+  final String country = 'Sri Lanka';
+  final resposeAll = await allCovidInfo(http.Client());
+  final responseCountry = await countryCovidInfo(country, http.Client());
 
-class MyApp extends StatelessWidget {
-  // This widget is the root of your application.
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        primaryColor: Color(0xff265699),
-        primarySwatch: Colors.blue,
-      ),
-      home: UI(),
-    );
-  }
+  print(resposeAll);
+  print(responseCountry);
 }
