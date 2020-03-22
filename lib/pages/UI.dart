@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:novel_covid_api/widgets/begin.dart';
+import 'package:novel_covid_api/covid_info.dart';
+import 'package:novel_covid_api/widgets/all_covid_widget.dart';
+import '../widgets/begin.dart';
+import 'package:http/http.dart' as http;
 
 class UI extends StatefulWidget {
   @override
@@ -7,8 +10,9 @@ class UI extends StatefulWidget {
 }
 
 class _UIState extends State<UI> {
-  final _controller = new TextEditingController();
-  final _infoWidget = Begin();
+  final _controller = TextEditingController();
+  final _httpClient = http.Client();
+  Widget _infoWidget = Begin();
 
   @override
   Widget build(BuildContext context) {
@@ -60,7 +64,9 @@ class _UIState extends State<UI> {
                         child: RaisedButton(
                           child: Text('All Information'),
                           textColor: Colors.white,
-                          onPressed: () {},
+                          onPressed: () async {
+                            await this._dispatchAllInformation();
+                          },
                           color: Theme.of(context).primaryColor,
                         ),
                       ),
@@ -78,5 +84,10 @@ class _UIState extends State<UI> {
         ),
       ),
     );
+  }
+
+  Future<void> _dispatchAllInformation() async{
+    final response = await allCovidInfo(this._httpClient);
+    this._infoWidget = new AllCovidWidget(response);
   }
 }

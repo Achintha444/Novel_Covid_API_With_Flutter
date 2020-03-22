@@ -10,6 +10,8 @@ class AllCovidWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      padding: EdgeInsets.only(top: 10, bottom: 20),
+      height: (MediaQuery.of(context).size.height) / 2,
       child: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -60,9 +62,9 @@ class AllCovidWidget extends StatelessWidget {
             Center(
               child: Text(
                 'All Active Cases : ' +
-                    (this._allCovidInfo['cases'].getCases -
-                            this._allCovidInfo['deaths'].getDeaths -
-                            this._allCovidInfo['recovered'].getRecovered)
+                    (this._allCovidInfo['cases'] -
+                            this._allCovidInfo['deaths'] -
+                            this._allCovidInfo['recovered'])
                         .toString(),
                 style: TextStyle(
                   fontSize: 25,
